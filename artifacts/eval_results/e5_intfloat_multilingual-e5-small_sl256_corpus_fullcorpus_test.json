@@ -1,0 +1,12 @@
+{
+  "model": "e5-small",
+  "mode": "corpus",
+  "corpus": "fullcorpus",
+  "split": "test",
+  "metrics": {
+    "nDCG@5": 0.2493860668773433,
+    "Recall@5": 0.27954166666666663,
+    "nDCG@10": 0.2764380633922851,
+    "Recall@10": 0.3451666666666666
+  }
+}

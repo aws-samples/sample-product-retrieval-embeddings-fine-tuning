@@ -1,0 +1,85 @@
+Fine-tuning a compact multilingual embedding model for pt-BR product retrieval
+Copyright 2026 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+This repository carries two licenses:
+
+  - The sample code and documentation are licensed under the MIT No
+    Attribution License (MIT-0); see the LICENSE file at the repository root.
+
+  - The derived pt-BR dataset in the data/ directory is licensed under the
+    Apache License, Version 2.0 (the "License"), inherited from the source
+    dataset described below; you may not use that data except in compliance
+    with the License. A copy of the License is included in data/LICENSE, and
+    is also available at http://www.apache.org/licenses/LICENSE-2.0
+
+--------------------------------------------------------------------------------
+Third-party attributions
+--------------------------------------------------------------------------------
+
+1. Shopping Queries Dataset (ESCI)
+   Copyright Amazon.com, Inc. or its affiliates (Amazon Science)
+   Source:  https://github.com/amazon-research/esci-code
+   Paper:   Shopping Queries Dataset: A Large-Scale ESCI Benchmark for Improving
+            Product Search. Chandan K. Reddy, Lluis Marquez, Fran Valero,
+            Nikhil Rao, Hugo Zaragoza, Sambaran Bandyopadhyay, Arnab Biswas,
+            Anlu Xing, Karthik Subbian (2022). arXiv:2206.06588
+   License: Apache License 2.0
+
+   MODIFICATIONS TO THIS WORK (as required by Apache-2.0 section 4(b)):
+
+   The pt-BR data distributed here is a MODIFIED DERIVATIVE of the Shopping
+   Queries Dataset. The following changes were made:
+
+     a) Subsetting. Only the US / English locale was retained, and only the
+        E (Exact), S (Substitute) and I (Irrelevant) relevance labels;
+        C (Complement) rows were dropped. A reproducible sample (fixed random
+        seed 42) of 10,000 queries / 59,270 products / 62,689 judgements was
+        selected with a controlled per-query label composition. The file
+        data/sample_dataset_ptbr.sample.jsonl is a further 500-query slice of
+        that subset.
+
+     b) Machine translation. The natural-language text (product title,
+        description, bullet points and colour, and the query strings) was
+        translated from English to Brazilian Portuguese (pt-BR) using Amazon
+        Translate, with a custom terminology of 26,503 catalog brand terms
+        mapped to themselves so that brand names are carried through
+        untranslated.
+
+     c) Re-splitting. The original dataset split was replaced with a fresh
+        query-level 70/20/10 train/test/validation split (seed 42).
+
+     d) Field reshaping. Records were joined and reshaped into JSONL, and the
+        translated product fields were concatenated into a single passage
+        field. Query IDs, product IDs and the original ESCI relevance labels
+        are PRESERVED UNCHANGED from the source dataset.
+
+   CAVEAT: the Portuguese text is machine-generated and has not been reviewed
+   by a human translator. It may contain translation errors. Query-side tokens
+   that are not actual catalog brands, or that differ in letter case, were
+   translated on a best-effort basis. This data is suitable for demonstrating a
+   workflow; it is not a gold-standard human translation and should not be
+   presented as one.
+
+2. multilingual-e5-small
+   Copyright the E5 authors (Microsoft Corporation)
+   Source:  https://huggingface.co/intfloat/multilingual-e5-small
+   Code:    https://github.com/microsoft/unilm/tree/HEAD/e5
+   Paper:   Multilingual E5 Text Embeddings: A Technical Report.
+            Liang Wang, Nan Yang, Xiaolong Huang, Linjun Yang, Rangan Majumder,
+            Furu Wei (2024). arXiv:2402.05672
+   License: MIT
+
+   Referenced by this work as the base model that is fine-tuned. No model
+   weights are redistributed in this repository; the notebook downloads the
+   model from Hugging Face at run time. If you redistribute fine-tuned weights
+   derived from it, retain the MIT license and this attribution.
+
+--------------------------------------------------------------------------------
+Note on Amazon Translate output
+--------------------------------------------------------------------------------
+
+The pt-BR text was produced with Amazon Translate. Before redistributing
+machine-translated output at scale, review the AWS Service Terms applicable to
+Amazon Translate for your account and use case.
+
+This NOTICE is a practical attribution summary, not legal advice.

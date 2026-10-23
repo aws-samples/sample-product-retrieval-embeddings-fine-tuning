@@ -1,0 +1,12 @@
+{
+  "model": "models/e5-small-ptbr-ft",
+  "mode": "corpus",
+  "corpus": "fullcorpus",
+  "split": "test",
+  "metrics": {
+    "nDCG@5": 0.3970088515055012,
+    "Recall@5": 0.4437083333333333,
+    "nDCG@10": 0.4319680105494586,
+    "Recall@10": 0.5275833333333333
+  }
+}

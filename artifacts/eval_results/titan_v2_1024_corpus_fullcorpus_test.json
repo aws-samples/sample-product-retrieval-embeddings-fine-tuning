@@ -1,0 +1,12 @@
+{
+  "model": "titan",
+  "mode": "corpus",
+  "corpus": "fullcorpus",
+  "split": "test",
+  "metrics": {
+    "nDCG@5": 0.34035122234228016,
+    "Recall@5": 0.3799583333333333,
+    "nDCG@10": 0.37297721767037934,
+    "Recall@10": 0.45795833333333336
+  }
+}
