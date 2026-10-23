@@ -1,0 +1,19 @@
+# Local environment for reproduce_experiment.ipynb.
+#
+# NOTE ON sentence-transformers. This file pins the version used LOCALLY, where the
+# notebook only calls model.encode(). The SageMaker training job pins its own,
+# different version (sentence-transformers==2.7.0, written by the notebook into
+# finetune_src/requirements.txt) because the training script uses the model.fit()
+# API from the 2.x line. That split is deliberate: do not "align" the two.
+#
+# Floors, not exact pins: these are the lowest versions the notebook was run against.
+
+sentence-transformers>=2.7.0
+torch>=2.1.0
+numpy>=1.24
+pandas>=2.0
+pyarrow>=14.0
+boto3>=1.34
+sagemaker>=2.200
+xlsxwriter>=3.1        # writing the Amazon Translate batch documents (DATA_MODE="full")
+openpyxl>=3.1          # reading them back (DATA_MODE="full")
